@@ -8,6 +8,8 @@ Rails.application.configure do
 
   config.reload_classes_only_on_change = false
 
+  config.web_console.whitelisted_ips = '0.0.0.0/0'
+
   # Do not eager load code on boot.
   config.eager_load = false
 
