@@ -31,7 +31,7 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to board
+      redirect_to @board
     else
       redirect_to :back, flash: {
         board: @board,
@@ -41,7 +41,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board.delete
+    @board.destroy
 
     redirect_to boards_path, flash: { notice: "「#{@board.title}」の掲示板が削除されました" }
   end
@@ -49,7 +49,7 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:name, :title, :body)
+    params.require(:board).permit(:name, :title, :body, tag_ids: [])
   end
 
   def set_target_board
